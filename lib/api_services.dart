@@ -22,4 +22,21 @@ class APICalling {
     var res = jsonDecode(response.body);
     return res;
   }
+
+  Future<dynamic> getCountries() async {
+    var url = _BASE_URL + "/countries";
+    print("Calling Api: $url");
+
+    var response = await http.get(Uri.parse(url));
+    var res = jsonDecode(response.body);
+    return res;
+  }
+  Future<dynamic> getCountryData({required String country}) async {
+    var url = _BASE_URL + "/country/$country/status/confirmed";
+    print("Calling Api: $url");
+
+    var response = await http.get(Uri.parse(url));
+    var res = jsonDecode(response.body);
+    return res;
+  }
 }

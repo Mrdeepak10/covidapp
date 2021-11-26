@@ -37,7 +37,7 @@ class _StaticsScreenState extends State<StaticsScreen> {
     return Scaffold(
       body: defaultData != null
           ? ListView.builder(
-              itemCount: defaultData,
+              itemCount: 10,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                     child: ListTile(
@@ -49,8 +49,8 @@ class _StaticsScreenState extends State<StaticsScreen> {
 
                 );
               })
-          : Center(
-              child: Container(
+          :  const Center(
+              child: SizedBox(
                   height: 30, width: 30, child: CircularProgressIndicator()),
             ),
     );
