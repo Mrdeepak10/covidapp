@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'api_services.dart';
 
 class ProtectionScreen extends StatefulWidget {
+
   const ProtectionScreen({Key? key}) : super(key: key);
 
   @override
@@ -38,6 +39,7 @@ class _ProtectionScreenState extends State<ProtectionScreen> {
     return Scaffold(
       body: countries != null
           ? ListView.builder(
+        shrinkWrap: true,
               itemCount: countries!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
@@ -47,38 +49,15 @@ class _ProtectionScreenState extends State<ProtectionScreen> {
                           AppRoutes.push(
                               context,
                               StatusPage(
-                                  country: countries![index]["Country"]));
+                                  country: countries![index]["Country"],
+
+                              ));
                         },
                         child: Text("${countries![index]["Country"]}")),
-                    subtitle: Container(
-                      height: 50,
-                      width: 250,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  print("Hello");
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.teal,
-                                )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.teal,
-                                )),
-                            IconButton(
-                                onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                          ]),
-                    ),
-                    isThreeLine: true,
-                  ),
-                  // Text("${defaultData['countriesRoute']['Name']}"),
-                );
+                    subtitle: Text("${countries![index]["ISO2"]}")
+
+                ));
+
               })
           : const Center(
               child: SizedBox(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'api_services.dart';
@@ -16,9 +17,9 @@ class _StatusPageState extends State<StatusPage> {
 
   List? countryData;
 
-  //
-  void callDefault() async {
-    var response = await _apiCalling.getCountryData(country: widget.country);
+  void callByStatus(status) async {
+    var response =
+        await _apiCalling.getCountryByStatusData(widget.country, status);
 
     setState(() {
       countryData = response;
@@ -29,7 +30,7 @@ class _StatusPageState extends State<StatusPage> {
 
   @override
   void initState() {
-    callDefault();
+    callByStatus("confirmed");
     super.initState();
   }
 
@@ -49,9 +50,10 @@ class _StatusPageState extends State<StatusPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(countryData![index]["Country"]),
-                      Text(countryData![index]["CountryCode"]),
-                      Text(countryData![index]["Cases"].toString()),
+                      const Padding(padding: EdgeInsets.all(8)),
+                      Center(child: Text(countryData![index]["Country"])),
+                      Center(child: Text(countryData![index]["Date"])),
+                      Center(child: Text(countryData![index]["Status"].toString())),
                     ],
                   )
                       // Text("${defaultData['countriesRoute']['Name']}"),
@@ -61,7 +63,44 @@ class _StatusPageState extends State<StatusPage> {
                 child: SizedBox(
                     height: 30, width: 30, child: CircularProgressIndicator()),
               ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.list),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Confirmed'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          callByStatus('confirmed');
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Deaths'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          callByStatus('deaths');
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Recovered'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          callByStatus('recovered');
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
+        ),
       ),
     );
   }
 }
+
+

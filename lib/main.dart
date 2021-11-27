@@ -1,10 +1,10 @@
 import 'package:covid_app/protection_screen.dart';
 import 'package:covid_app/risk_infection.dart';
 import 'package:covid_app/symptom_cheak.dart';
+import 'package:covid_app/upload_data.dart';
 import 'package:covid_app/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'contacts_screens.dart';
 import 'map.dart';
 import 'statics_screen.dart';
 import 'utils.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
@@ -198,13 +198,17 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Card(
-          child: Container(
-            child: Image.asset("images/img_5.png", fit: BoxFit.fill),
-            height: 100,
-            width: 90,
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15)),
+          child: GestureDetector(onTap: () {
+            AppRoutes.push(context,  const UploadDataPage());
+          },
+            child: Container(
+              child: Image.asset("images/img_5.png", fit: BoxFit.fill),
+              height: 100,
+              width: 90,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(15)),
+            ),
           ),
         ),
       ],
@@ -261,7 +265,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GestureDetector(onTap: () {
-            AppRoutes.push(context, const ContactsPage());
           },
             child: Card(
               child: Container(
