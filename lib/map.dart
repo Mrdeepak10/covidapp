@@ -65,6 +65,10 @@ class MapSampleState extends State<MapSample> {
               _contraoller.complete(controller);
             },
           ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: TextFormField(),
+          // ),
           Padding(
             padding: const EdgeInsets.all(70.0),
             child: Container(
@@ -73,8 +77,8 @@ class MapSampleState extends State<MapSample> {
               width: 300,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              child: const TextField(
-                decoration: InputDecoration(
+              child:  TextFormField(
+                decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.search_rounded),
                   labelText: "Search",
                 ),

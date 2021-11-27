@@ -50,17 +50,22 @@ class APICalling {
     return res;
   }
 
-  Future<dynamic> getAllStatus() async{
+  Future<dynamic> getAllStatus() async {
     var url = _BASE_URL + "/summary";
-     print("Calling Api: $url");
+    print("Calling Api: $url");
 
-     var response = await http.get(Uri.parse(url));
-     var res = jsonDecode(response.body);
-
+    var response = await http.get(Uri.parse(url));
+    var res = jsonDecode(response.body);
 
     return res;
   }
 
+  Future<dynamic> getStatus(String country)async{
+    var url = _BASE_URL + "/total/dayone/country/$country";
+    print("Calling Api: $url");
+    var response = await http.get(Uri.parse(url));
+    var res = jsonDecode(response.body);
+    return res;
 
-
+  }
 }

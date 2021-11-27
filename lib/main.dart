@@ -2,6 +2,7 @@ import 'package:covid_app/protection_screen.dart';
 import 'package:covid_app/risk_infection.dart';
 import 'package:covid_app/symptom_cheak.dart';
 import 'package:covid_app/upload_data.dart';
+import 'package:covid_app/utils/contacts_page.dart';
 import 'package:covid_app/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -265,6 +266,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GestureDetector(onTap: () {
+            AppRoutes.push(context, const ContactPage());
           },
             child: Card(
               child: Container(
